@@ -1,0 +1,210 @@
+[
+  {
+    "Id": 1,
+    "workflowId": 1,
+    "workflowName": "New Email to Slack",
+    "timestamp": "2024-01-22T09:15:32Z",
+    "status": "success",
+    "duration": 1243,
+    "triggerData": {
+      "from": "important@client.com",
+      "subject": "Q1 Budget Review",
+      "body": "Please review the attached Q1 budget proposal..."
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 234
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 1009
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "workflowId": 2,
+    "workflowName": "Form Submission to Sheets",
+    "timestamp": "2024-01-22T11:30:15Z",
+    "status": "success",
+    "duration": 876,
+    "triggerData": {
+      "name": "John Smith",
+      "email": "john@example.com",
+      "message": "Interested in your services"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 156
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 720
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "workflowId": 4,
+    "workflowName": "Trello Card Creation",
+    "timestamp": "2024-01-22T10:20:45Z",
+    "status": "success",
+    "duration": 1567,
+    "triggerData": {
+      "message": "Add dark mode to dashboard",
+      "user": "Sarah Johnson"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 298
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 1269
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "workflowId": 1,
+    "workflowName": "New Email to Slack",
+    "timestamp": "2024-01-22T08:45:20Z",
+    "status": "failed",
+    "duration": 2341,
+    "error": "Slack channel not found: #notifications",
+    "triggerData": {
+      "from": "support@vendor.com",
+      "subject": "Service Update"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 187
+      },
+      {
+        "nodeId": "node-2",
+        "status": "failed",
+        "duration": 2154,
+        "error": "Channel not found"
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "workflowId": 5,
+    "workflowName": "Customer Onboarding",
+    "timestamp": "2024-01-22T08:45:12Z",
+    "status": "success",
+    "duration": 3421,
+    "triggerData": {
+      "name": "Acme Corp",
+      "email": "contact@acmecorp.com"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 345
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 1234
+      },
+      {
+        "nodeId": "node-3",
+        "status": "success",
+        "duration": 987
+      },
+      {
+        "nodeId": "node-4",
+        "status": "success",
+        "duration": 855
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "workflowId": 2,
+    "workflowName": "Form Submission to Sheets",
+    "timestamp": "2024-01-22T07:15:33Z",
+    "status": "success",
+    "duration": 945,
+    "triggerData": {
+      "name": "Emily Davis",
+      "email": "emily@startup.com",
+      "message": "Demo request for enterprise plan"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 198
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 747
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "workflowId": 4,
+    "workflowName": "Trello Card Creation",
+    "timestamp": "2024-01-21T16:30:22Z",
+    "status": "success",
+    "duration": 1123,
+    "triggerData": {
+      "message": "Improve mobile responsiveness",
+      "user": "Mike Chen"
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 234
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 889
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "workflowId": 1,
+    "workflowName": "New Email to Slack",
+    "timestamp": "2024-01-21T14:22:18Z",
+    "status": "success",
+    "duration": 1087,
+    "triggerData": {
+      "from": "important@client.com",
+      "subject": "Meeting Rescheduled",
+      "body": "The quarterly review meeting has been moved..."
+    },
+    "stepResults": [
+      {
+        "nodeId": "node-1",
+        "status": "success",
+        "duration": 267
+      },
+      {
+        "nodeId": "node-2",
+        "status": "success",
+        "duration": 820
+      }
+    ]
+  }
+]
