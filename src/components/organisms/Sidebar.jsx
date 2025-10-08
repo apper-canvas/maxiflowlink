@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ApperIcon from "@/components/ApperIcon";
 import { cn } from "@/utils/cn";
 
 const Sidebar = ({ onClose }) => {
-  const { useSelector } = window.ReactRedux || {};
-  const user = useSelector ? useSelector((state) => state.user?.user) : null;
+const user = useSelector((state) => state.user?.user);
 
   const navItems = [
     { path: "/", label: "Workflows", icon: "GitBranch" },
