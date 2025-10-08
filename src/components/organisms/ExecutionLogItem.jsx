@@ -35,19 +35,19 @@ const ExecutionLogItem = ({ log, onExpand }) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between mb-2">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-1">{log.workflowName}</h3>
+<h3 className="font-semibold text-gray-900 mb-1">{log.workflowName || ''}</h3>
               <p className="text-sm text-gray-500">
-                {formatDistanceToNow(new Date(log.timestamp), { addSuffix: true })}
+                {log.timestamp ? formatDistanceToNow(new Date(log.timestamp), { addSuffix: true }) : ''}
               </p>
             </div>
-            <StatusBadge status={log.status} />
+            <StatusBadge status={log.status || ''} />
           </div>
 
-          {isFailed && log.error && (
+{isFailed && log.error && (
             <div className="mt-2 p-3 bg-red-50 border border-red-100 rounded-lg">
               <p className="text-sm text-red-700 flex items-start gap-2">
                 <ApperIcon name="AlertCircle" size={16} className="flex-shrink-0 mt-0.5" />
-                <span>{log.error}</span>
+                <span>{log.error || ''}</span>
               </p>
             </div>
           )}
@@ -55,15 +55,15 @@ const ExecutionLogItem = ({ log, onExpand }) => {
           <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
             <div className="flex items-center gap-1">
               <ApperIcon name="Layers" size={16} className="text-primary-500" />
-              <span>{log.stepResults?.length || 0} steps</span>
+<span>{log.stepResults?.length || 0} steps</span>
             </div>
             <div className="flex items-center gap-1">
-              <ApperIcon name="Timer" size={16} className="text-gray-400" />
-              <span>{log.duration}ms</span>
+              <ApperIcon name="Clock" size={14} />
+              <span>{log.duration || 0}ms</span>
             </div>
             <div className="flex items-center gap-1">
-              <ApperIcon name="Calendar" size={16} className="text-gray-400" />
-              <span>{format(new Date(log.timestamp), "MMM d, yyyy h:mm a")}</span>
+              <ApperIcon name="Calendar" size={14} />
+              <span>{log.timestamp ? format(new Date(log.timestamp), "MMM d, yyyy h:mm a") : ''}</span>
             </div>
           </div>
         </div>

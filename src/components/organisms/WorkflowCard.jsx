@@ -58,9 +58,9 @@ const WorkflowCard = ({ workflow, onUpdate, onDelete }) => {
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1 pr-4">
           <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
-            {workflow.name}
+{workflow.name || 'Untitled Workflow'}
           </h3>
-          <p className="text-sm text-gray-600 line-clamp-2">{workflow.description}</p>
+          <p className="text-sm text-gray-600 line-clamp-2">{workflow.description || ''}</p>
         </div>
         <StatusBadge status={workflow.isActive ? "active" : "inactive"} />
       </div>

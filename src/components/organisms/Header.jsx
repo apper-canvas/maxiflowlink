@@ -2,7 +2,7 @@ import { useState } from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 
-const Header = ({ title, onMenuClick, action }) => {
+const Header = ({ title, onMenuClick, action, logout }) => {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-30 backdrop-blur-sm bg-white/95">
       <div className="flex items-center justify-between px-4 lg:px-6 py-4">
@@ -17,7 +17,18 @@ const Header = ({ title, onMenuClick, action }) => {
             {title}
           </h1>
         </div>
-        {action && <div>{action}</div>}
+{action && <div>{action}</div>}
+        {logout && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={logout}
+            className="flex items-center gap-2"
+          >
+            <ApperIcon name="LogOut" size={18} />
+            <span className="hidden md:inline">Logout</span>
+          </Button>
+        )}
       </div>
     </header>
   );

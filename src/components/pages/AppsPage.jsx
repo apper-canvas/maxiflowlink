@@ -33,14 +33,14 @@ const AppsPage = () => {
     loadApps();
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
     let filtered = [...apps];
 
     if (searchQuery) {
       filtered = filtered.filter(app =>
-        app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.description.toLowerCase().includes(searchQuery.toLowerCase())
+        app.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        app.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        app.description?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -51,7 +51,7 @@ const AppsPage = () => {
     setFilteredApps(filtered);
   }, [apps, searchQuery, selectedCategory]);
 
-  const categories = ["all", ...new Set(apps.map(app => app.category))];
+const categories = ["all", ...new Set(apps.map(app => app.category).filter(Boolean))];
 
   if (loading) return <Loading message="Loading app integrations..." />;
   if (error) return <Error message={error} onRetry={loadApps} />;

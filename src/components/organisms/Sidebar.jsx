@@ -52,18 +52,25 @@ const Sidebar = ({ onClose }) => {
       </nav>
 
       <div className="p-6 border-t border-gray-200 bg-gradient-to-br from-primary-50 to-secondary-50">
-        <div className="flex items-center gap-3 mb-3">
+<div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-full flex items-center justify-center text-white font-bold">
-            JD
+            {user?.firstName?.charAt(0) || ''}{user?.lastName?.charAt(0) || ''}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-gray-900 truncate">John Doe</p>
-            <p className="text-sm text-gray-500 truncate">john@example.com</p>
+            <p className="font-semibold text-gray-900 truncate">
+              {user?.firstName || ''} {user?.lastName || ''}
+            </p>
+            <p className="text-sm text-gray-500 truncate">{user?.emailAddress || ''}</p>
           </div>
         </div>
       </div>
     </div>
-  );
+);
+
+  const { useSelector } = window.ReactRedux || {};
+  const user = useSelector ? useSelector((state) => state.user?.user) : null;
+
+  return <NavContent />;
 
   return (
     <>

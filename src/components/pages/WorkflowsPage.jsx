@@ -38,12 +38,12 @@ const WorkflowsPage = () => {
   }, []);
 
   useEffect(() => {
-    let filtered = [...workflows];
+let filtered = [...workflows];
 
     if (searchQuery) {
       filtered = filtered.filter(w =>
-        w.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        w.description.toLowerCase().includes(searchQuery.toLowerCase())
+        w.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        w.description?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
