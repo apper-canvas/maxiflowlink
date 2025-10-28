@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { clearUser, setUser } from "./store/userSlice";
 import Login from "@/components/pages/Login";
@@ -19,10 +20,15 @@ import Header from "@/components/organisms/Header";
 
 export const AuthContext = createContext(null);
 function App() {
-  const navigate = useNavigate();
+const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [isInitialized, setIsInitialized] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const isAuthPage = ['/login', '/signup', '/callback', '/error', '/reset-password', '/prompt-password'].some(path => 
+    location.pathname.includes(path)
+  );
 
   useEffect(() => {
     const { ApperClient, ApperUI } = window.ApperSDK;
@@ -131,18 +137,20 @@ function App() {
 <>
       <div className="min-h-screen bg-surface">
         <div className="flex">
-          <Sidebar onClose={handleMobileMenuClose} />
-          {mobileMenuOpen && <Sidebar onClose={handleMobileMenuClose} />}
+          {!isAuthPage && <Sidebar onClose={handleMobileMenuClose} />}
+          {!isAuthPage && mobileMenuOpen && <Sidebar onClose={handleMobileMenuClose} />}
 
           <div className="flex-1 flex flex-col min-h-screen">
-<Header 
-              title="FlowLink"
-              onMenuClick={handleMobileMenuToggle}
-              logout={authMethods.logout}
-            />
-            
-            <main className="flex-1 p-4 lg:p-6">
-<AuthContext.Provider value={authMethods}>
+            {!isAuthPage && (
+              <Header 
+                title="FlowLink"
+                onMenuClick={handleMobileMenuToggle}
+                logout={authMethods.logout}
+              />
+            )}
+
+            <main className={`flex-1 ${!isAuthPage ? 'p-4 lg:p-6' : ''}`}>
+              <AuthContext.Provider value={authMethods}>
                 <Routes>
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
