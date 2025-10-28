@@ -6,12 +6,20 @@ import { cn } from "@/utils/cn";
 const Sidebar = ({ onClose }) => {
 const user = useSelector((state) => state.user?.user);
 
-  const navItems = [
+const navItems = [
     { path: "/", label: "Workflows", icon: "GitBranch" },
     { path: "/apps", label: "Apps", icon: "Grid3x3" },
     { path: "/templates", label: "Templates", icon: "Layout" },
-    { path: "/activity", label: "Activity Log", icon: "Activity" }
+    { path: "/activity", label: "Activity Log", icon: "Activity" },
+    { label: "Billing Portal", icon: "CreditCard", external: true }
   ];
+
+  const handleBillingPortalClick = () => {
+    const token = localStorage.getItem('jwt_token');
+    const billingUrl = `https://test-billing.apper.io?token=${token}`;
+    window.open(billingUrl, '_blank', 'noopener,noreferrer');
+    onClose();
+  };
 
   const NavContent = () => (
     <div className="flex flex-col h-full">
@@ -29,28 +37,42 @@ const user = useSelector((state) => state.user?.user);
         </div>
       </div>
 
-      <nav className="flex-1 p-4 space-y-1">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            onClick={onClose}
-            className={({ isActive }) =>
-              cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-medium",
-                isActive
-                  ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md"
-                  : "text-gray-700 hover:bg-gray-100"
-              )
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <ApperIcon name={item.icon} size={20} />
-                <span>{item.label}</span>
-              </>
-            )}
-          </NavLink>
+<nav className="flex-1 p-4 space-y-1">
+        {navItems.map((item, index) => (
+          item.external ? (
+            <button
+              key={`external-${index}`}
+              onClick={handleBillingPortalClick}
+              className={cn(
+                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-medium w-full text-left",
+                "text-gray-700 hover:bg-gray-100"
+              )}
+            >
+              <ApperIcon name={item.icon} size={20} />
+              <span>{item.label}</span>
+            </button>
+          ) : (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              onClick={onClose}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-medium",
+                  isActive
+                    ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md"
+                    : "text-gray-700 hover:bg-gray-100"
+                )
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <ApperIcon name={item.icon} size={20} />
+                  <span>{item.label}</span>
+                </>
+              )}
+            </NavLink>
+          )
         ))}
       </nav>
 
